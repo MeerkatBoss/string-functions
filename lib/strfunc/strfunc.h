@@ -29,7 +29,8 @@ size_t string_length(const char *str);
  * @param[in] from - source string
  * @return Parameter `to`
  * 
- * @note If memory allocated for `to` is not enough to store `from`
+ * @warning
+ * If memory allocated for `to` is not enough to store `from`
  * this will lead to undefined behavior
  */
 char *string_copy(char *to, const char *from);
@@ -61,6 +62,10 @@ int compare_strings(const char *str1, const char *str2);
  * @param[inout] to - string to append to
  * @param[in] from - appended string
  * @return Parameter `to` 
+ * 
+ * @warning
+ * If memory allocated for `to` is not enough to store
+ * concatenated strings this will lead to undefined behavior
  */
 char *string_concat(char *to, const char *from);
 
