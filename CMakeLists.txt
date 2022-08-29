@@ -22,6 +22,6 @@ set(CMAKE_CXX_LINKER "${CMAKE_CXX_LINKER}-fcheck-new -fsized-deallocation -fstac
     -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr\
     -pie -Wlarger-than=8192 -Wstack-usage=8192")
 
-add_subdirectory(src)
-
 add_subdirectory(lib/strfunc)
+
+add_subdirectory(src)
