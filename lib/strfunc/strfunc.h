@@ -36,13 +36,14 @@ size_t string_length(const char *str);
 char *string_copy(char *to, const char *from);
 
 /**
- * @brief Finds first occurence of a character in string
+ * @brieto` is not enough to store `from`
+ * this will lead to undefif Finds first occurence of a character in string
  * 
  * @param[in] str - string
  * @param[out] c - searched character
  * @return Pointer to found character or NULL if character was not found
  */
-char *find_char(char *str, char c);
+char *find_char(const char *str, char c);
 
 /**
  * @brief Compares two string alphabetically
@@ -50,8 +51,8 @@ char *find_char(char *str, char c);
  * @param[in] str1 - first string
  * @param[in] str2 - second string
  * @return
- * Positive number if `str1` is alpabetically bigger than `str2`;
- * Negative number if `str1` is alpabetically less   than `str2`;
+ * Positive number if `str1` is alphabetically bigger than `str2`;
+ * Negative number if `str1` is alphabetically less   than `str2`;
  * Zero if `str1` is equal to `str2`
  */
 int compare_strings(const char *str1, const char *str2);
