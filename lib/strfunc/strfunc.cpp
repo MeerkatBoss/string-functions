@@ -34,7 +34,7 @@ char *file_get_string(FILE *stream, size_t n, char *str)
     assert(str != NULL);
 
     int fd = fileno(stream);
-    size_t used = 0; // TODO: read not written
+    size_t used = 0;
     while (used < n)
         used += (size_t) read(fd, str + used, n - used);
     return str;
@@ -115,8 +115,11 @@ char *string_ncopy(char *to, const char *from, size_t n)
     assert(from != NULL);
 
     char *original = to;
-    while ((n--) && (*(to++) = *(from++)))
+    size_t i = 0;
+    while ((i++ < n) && (*(to++) = *(from++)))
         continue;
+    while((i++ < n))
+        *(to++) = '\0';
     return original;
 }
 
@@ -151,11 +154,25 @@ char *string_concat(char *to, const char *from)
     return to;
 }
 
+static void terminated_string_ncopy(char *to, const char *from, size_t n);
+
 char *string_nconcat(char *to, const char *from, size_t n)
 {
     size_t tlen = string_length(to);
-    string_ncopy(to + tlen, from, n); // TODO: make intermediate function
-    if (string_length(from) >= n)
-        to[tlen] = '\0';
+    terminated_string_ncopy(to + tlen, from, n);
     return to;
+}
+
+static void terminated_string_ncopy(char *to, const char *from, size_t n)
+{
+    assert(to != NULL);
+    assert(from != NULL);
+    if (n == 0)
+        return;
+
+    while ((n--) && (*(to++) = *(from++)))
+        continue;
+    
+    if (to[-1] != '\0')
+        to[0] = '\0';
 }

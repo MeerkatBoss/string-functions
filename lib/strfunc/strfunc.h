@@ -77,7 +77,9 @@ char *string_duplicate(const char *str);
 /**
  * @brief
  * Copies no more than `n` characters from a string to another
- * string
+ * string. If source string contains less than `n` characters,
+ * additional '\\0' characters are appended, to ensure that
+ * exactly `n` characters were written to destination string
  * 
  * @param[out] to - destination string
  * @param[in] from - source string
